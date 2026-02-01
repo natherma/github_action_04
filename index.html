@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Joke App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    button {
+      padding: 10px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>😂 Random Joke Generator</h2>
+    <p id="setup">Click the button</p>
+    <p id="punchline"></p>
+    <button onclick="getJoke()">Get Joke</button>
+  </div>
+
+  <script>
+    function getJoke() {
+      fetch("https://official-joke-api.appspot.com/random_joke")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("setup").innerText = data.setup;
+          document.getElementById("punchline").innerText = data.punchline;
+        });
+    }
+  </script>
+</body>
+</html>
